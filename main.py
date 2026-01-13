@@ -1,20 +1,19 @@
-# 태그 값들 지정
-
-tag_name = "h1"
-
-angle_bracket = ["<", ">"]
-
 content = "공욱재"
 
+def make_element(isOpen, tag_name, content):
+    def make_tag(isOpen, tag_name):
+        angle_bracket = ["<", ">"]
+        slash = "/" 
 
-# 태그 조립
+        if isOpen == True:
+            open = angle_bracket[0] + tag_name + angle_bracket[1]
+            return open
+        else:
+            close = angle_bracket[0] + slash + tag_name + angle_bracket[1]
+            return close
+    result = make_tag(isOpen, tag_name) + content + make_tag(not isOpen, tag_name)
+    return result
 
-tag_jolib = angle_bracket[0] + tag_name + angle_bracket[1] + content + angle_bracket[0] + "/" + tag_name + angle_bracket[1]
 
-
-
-
-result = tag_jolib
-
-# 결과 출력
-print(result)
+result_element = make_element(True, "h1", content)
+print(result_element)
